@@ -1,0 +1,94 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-size: 86.5%;
+    font-family: Arial, Helvetica, sans;
+}
+
+.control {
+    display: block;
+    position: fixed;
+    width: 200px;
+    height: auto;
+    padding: 3px 0px;
+    border-top-left-radius: 6px;
+    border-bottom-left-radius: 6px;
+    top: 30px;
+    right: 0px;
+    border: 1px solid #EEE;
+    background: rgba(220, 220, 220, 0.3);
+    display: block;
+    position: fixed;
+    right: 0px;
+}
+
+#projectPath {
+    margin: 5px;
+    padding: 5px;
+    border-radius: 5px;
+    border: 1px solid #EEE;
+}
+
+#submit {
+    display: block;
+    width: 128px;
+    padding: 6px 0px;
+    border-radius: 6px;
+    background: #FFF;
+    font-weight: bold;
+    margin-left: 5px;
+    border: 1px solid #CCC;
+    background: #FFF;
+    color: #15ACFE;
+    outline: none;
+}
+
+#submit:hover {
+    border-color: #049BED;
+    background: #15ACFE;
+    color: #FFF;
+}
+
+.open {
+    position: relative;
+    display: block;
+    margin-left: 20px;
+}   
+
+.item {
+    height: 16px;
+    width: 16px;
+    vertical-align: bottom;
+    cursor: pointer;
+}
+
+.dirs {
+    background: url(../img/folder-sml.png) 0 3px no-repeat;
+}
+
+.files {
+    background: url(../img/file-sml.png) 0 3px no-repeat;
+}
+
+.itemLabel {
+    display: inline-block;
+    padding: 2px 2px 2px 24px;
+    width: 80%;
+    height: 20px;
+    line-height: 24px;
+    background-color: #E4F3F8;
+    border: 1px solid #CDEBEE;
+    cursor: pointer;
+}
+
+.itemLabel.completed {
+    background-color: #E4F8E6;
+}
+
+.gap {
+    display: block;
+    height: 1px;
+    border-bottom: 1px dashed #EEE;
+}
+
+

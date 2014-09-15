@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<title>{{ settings.title }}</title>
+    <script> 
+    (function (w,s,a) {
+        var d = w.document;
+        if( void 0 !== w[a] ) return;
+        w[a] = {
+            source: "http://localhost:45651/static",
+            settings: {
+                spks: {
+                    src: [],
+                    local: ['ease', 'base']
+                }
+            }
+        };
+        var x = d.createElement(s),
+        y = d.getElementsByTagName(s)[0];
+        //get the spk asynchronously?
+        x.async = true;
+        //x.src = 'http://s1.sparkida/src/js/spk/spk.js';
+        x.src = 'js/spk.min.js';
+        y.parentNode.insertBefore(x, y);
+    }(window,'script','Spk'))
+    </script>
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+    {{{body}}}
+</body>
+</html>

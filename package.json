@@ -1,0 +1,39 @@
+{
+	"name": "fsync",
+	"version": "0.3.0",
+	"preferGlobal": true,
+	"description": "FSync is a browser based FTP file manager for developers built with FTPimp on NodeJS.",
+	"main": "./fsync-app.js",
+	"directories": {
+		"lib": "./lib"
+	},
+	"scripts": {
+		"start": "node ./fsync-app",
+		"test": "./inspect -f && node --debug ./fsync-app.js"
+	},
+	"repository": {
+		"type": "git",
+		"url": ""
+	},
+	"keywords": [
+		"ftp",
+		"viewer",
+		"browser",
+		"file",
+        "manager"
+	],
+	"dependencies": {
+		"colors": "*",
+		"express": "~3.5.1",
+        "ftpimp": "~1.0.1",
+		"express3-handlebars": "~0.5.0"
+	},
+	"engine": {
+		"node": ">=0.8.x"
+	},
+	"author": {
+	 "name": "Nicholas Riley",
+	 "email": "nick@sparkida.com",
+	 "url": "http://sparkida.com"
+	}
+}

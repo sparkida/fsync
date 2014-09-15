@@ -1,0 +1,10 @@
+var myPrivateProperty = (function () {
+    //private because it is lower in the scope's resolution chain
+    var _myPrivateProperty = 'foo',
+        //this will 
+        getter = function () {
+            return _myPrivateProperty;
+        };
+    myPrivateProperty.get = _myPrivateProperty;
+    return ;
+}());
