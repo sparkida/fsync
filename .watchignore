@@ -1,10 +1,10 @@
 .watchignore
 .inspector.pid
-.bipulse.pid
+fsync.pid
+fsync.log
 4913
-log
 watch
-test
+watch.log
+debug.log
 start
-dbg
-inspect
+index.lock

@@ -7,7 +7,6 @@
         var d = w.document;
         if( void 0 !== w[a] ) return;
         w[a] = {
-            source: "http://localhost:45651/static",
             settings: {
                 spks: {
                     src: [],
@@ -20,7 +19,7 @@
         //get the spk asynchronously?
         x.async = true;
         //x.src = 'http://s1.sparkida/src/js/spk/spk.js';
-        x.src = 'js/spk.min.js';
+        x.src = 'js/spk.js';
         y.parentNode.insertBefore(x, y);
     }(window,'script','Spk'))
     </script>

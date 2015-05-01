@@ -1,0 +1,7 @@
+*.log
+*.pid
+node_modules/
+.sass-cache/
+config/config.js
+config/ftp.js
+docs/*

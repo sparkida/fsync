@@ -111,6 +111,7 @@ Spk.ignite('Base', 'b', function() {
 
     //synchronize a list of files and directories
     proto.sync = function (filelist) {
+        console.log('synchronizing', filelist);
         //we do each one separately since that is how ftp
         //works anyways, however this could generate some
         //undesired overhead in certain circumstances
@@ -134,7 +135,6 @@ Spk.ignite('Base', 'b', function() {
         };
 
         for (i = 0; i < filelist.length; i++) {
-
             cfg = Config.create(filelist[i]);
             Spk.ajax(cfg);
         }
@@ -149,7 +149,7 @@ Spk.ignite('Base', 'b', function() {
         Spk.ajax({
             method: 'get',
             action: action,
-            async: false,
+            async: true,
             complete: function () {
                 console.log('files complete');
                 if (target) {

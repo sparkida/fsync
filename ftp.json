@@ -1,9 +1,0 @@
-{
-    "host": "ftp.sparkida.com",
-    "port": 21,
-    "user": "test@sparkida.com",
-    "pass": "test1",
-    "debug": false,
-    "ftpdebug": true,
-    "root": "main"
-}

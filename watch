@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 
-WatchPulse()
+WatchFsync()
 {
-	WatchIgnore=($(cat ./.watchignore))
+	WatchIgnore=(`cat ./.watchignore`)
 	inotifywait -mr --timefmt '%d/%m/%y %H:%M' --format '%T %w %f' \
 	-e close_write . | while read date time dir file; do
 		updateFile=${file}
@@ -13,10 +13,8 @@ WatchPulse()
 		fi
 		#convert absolute path to relative
 		#updateFileREL=`echo "$FILECHANGE" | sed 's_'$curPath'/__'`
-		echo -e "${time}::\033[0;33mFile updated: $updateFile\033[0;m"
-        pkill node && node ~/fsync
+		echo -e "${time}::\033[0;33mFile updated: $updateFile\033[0m"
+        ./kill && ./start
 	done
 }
-
-WatchPulse
-
+./start && WatchFsync

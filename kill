@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+KillFsync() {
+    file=fsync.pid
+    if [ -s $file ]; then
+        pid=`cat $file`
+        echo -e "\033[31;4mKilling Fsync! :: $pid\033[0m"
+        kill -9 $pid
+        rm $file
+    else
+        echo -e "\033[33;4mFsync is dead\033[0m"
+    fi
+}
+KillFsync $@
+exit 0
