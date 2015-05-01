@@ -7,4 +7,5 @@ Setup
 -----
 1. Copy the `config/config.sample.js` to `config/config.js`
 2. Change `config/config.js` values as needed
-3. Start the server `./start` or `node fsync`
+3. Run `npm install`
+4. Start the server `./start` or `node fsync`
