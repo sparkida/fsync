@@ -1,17 +1,7 @@
-/*
- * Base
- * (c) 2014 Sparkida
+/**
+ * Base v0.2.0
  * Author: Nicholas Riley
- * v 0.1
- */
-/* ----Log----
- *
- * ---- Version info ----
- * v 0.1
- *	
- * ----- Todo list -----
- *  - need to do  + working on  = done
- *
+ * Sparkida 2015
  */
 Spk.ignite('Base', 'b', function() {
 
@@ -51,7 +41,6 @@ Spk.ignite('Base', 'b', function() {
         control: Spk.set('div', {
             class: 'control'
         })
-
     };
 
 
@@ -84,9 +73,9 @@ Spk.ignite('Base', 'b', function() {
      * generates new fsc.ini config
      */
     proto.generate = function (e) {
+        console.log('Building synchronization list');
         if (base.watch.length === 0) {
             console.log('noting selected, nothing to generate');
-            return;
         } else {
             var n,
                 it,
@@ -97,13 +86,13 @@ Spk.ignite('Base', 'b', function() {
                 };
             
             for (n in base.watch) {
-                if (base.watch[n]) {
+                if (base.watch.hasOwnProperty(n) && base.watch[n]) {
+                    console.log('pushing: ', n);
                     list.push(n);
                     Spk.append(base.items[n].slice(1), loader);
                 }
             }
             Spk.ease.fadeOut(base.mod.box, 300);
-            console.log(list);
             //---begin synchronization---
             proto.sync(list);
         }
@@ -122,11 +111,11 @@ Spk.ignite('Base', 'b', function() {
                 this.complete = complete;
             };
         Config.create = function (action) {
-            return new Config(action, function () {
-                var act = action;
-                dbg('file updated: ' + act);
-                base.items[act][1].className += ' completed';
-            });
+            var onComplete = function () {
+                    dbg('file updated: ' + action);
+                    base.items[action][1].className += ' completed';
+                };
+            return new Config(action, onComplete);
         };
         Config.prototype = {
             method: 'get',
@@ -136,6 +125,7 @@ Spk.ignite('Base', 'b', function() {
 
         for (i = 0; i < filelist.length; i++) {
             cfg = Config.create(filelist[i]);
+            console.log(cfg);
             Spk.ajax(cfg);
         }
 
@@ -227,7 +217,7 @@ Spk.ignite('Base', 'b', function() {
                     //otherwise we perform an ajax request, `getfiles`, to 
                     //get the files from the node server
                     //--
-                    //if we are clicking the a directory's label
+                    //if we are clicking the directory's label
                     if (e.currentTarget.nodeName.toLowerCase() === 'label' && type === 'dirs') {//{{{
                         if (undefined !== base.opened[filepath]) {
                             current = base.opened[filepath];
