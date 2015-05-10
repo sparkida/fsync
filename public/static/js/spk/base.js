@@ -3,10 +3,58 @@
  * Author: Nicholas Riley
  * Sparkida 2015
  */
-Spk.ignite('Base', 'b', function() {
+Spk.ignite('Base', 'b', function () {
+    self.dev = 1;
+    var proto = spk.b,
+        base,
+        AJAXConfig = function (action, complete) {
+            var that = this;
+            that.action = 'sync/' + action;
+            that.complete = complete;
+        },
+        SyncManager = function (filelist) {
+            var that = this;
+            that.list = filelist;
+            that.count = filelist.length;
+        };
 
-    var proto = spk.b, 
-        base;
+    SyncManager.create = function (filelist) {
+        return new SyncManager(filelist);
+    };
+    SyncManager.prototype.count = 0;
+    SyncManager.prototype.next = function () {
+        var that = this,
+            list = that.list,
+            item,
+            i = 0;
+        that.count -= 1;
+        if (that.count === 0) {
+            for (i; i < list.length; i++) {
+                item = list[i];
+                console.log(item);
+                Spk.after(base.items[item].slice(1), base.items[item][0]);
+                base.items[item][1].className = base.items[item][1].className.replace(' completed','');
+            }
+            Spk.ease.fadeOut(base.mod.loader, 300, 'easeInOutQuad', function () {
+                Spk.ease.fadeIn(base.mod.box, 300);
+            });
+        }
+    };
+
+    AJAXConfig.create = function (action) {
+        var onComplete = function () {
+                dbg('file updated: ' + action);
+                base.items[action][1].className += ' completed';
+                base.syncManager.next();
+            };
+        return new AJAXConfig(action, onComplete);
+    };
+
+    AJAXConfig.prototype = {
+        method: 'get',
+        action: '',
+        async: true
+    };
 
     //init is always called if available
     proto.init = function () {
@@ -43,7 +91,6 @@ Spk.ignite('Base', 'b', function() {
         })
     };
 
-
     proto.setup = function () {
         var mod = base.mod,
             control = mod.control,
@@ -55,7 +102,7 @@ Spk.ignite('Base', 'b', function() {
         Spk.append([
                 //mod.projectPath,
                 submit], control);
-
+        Spk.ease.fadeOut(mod.loader);
         Spk.prepend(control, mod.main);
         Spk.after([mod.box, mod.loader], mod.main);
     };
@@ -67,65 +114,51 @@ Spk.ignite('Base', 'b', function() {
     //list of all the dirs and files
     proto.items = {};
 
-
-    /*
+    /**
      * @method
      * generates new fsc.ini config
      */
     proto.generate = function (e) {
         console.log('Building synchronization list');
-        if (base.watch.length === 0) {
+        var loader = base.mod.loader,
+            list = Object.keys(base.watch).filter(function (item) {
+                return base.watch[item];
+            });
+        if (list.length === 0) {
             console.log('noting selected, nothing to generate');
-        } else {
-            var n,
-                it,
-                loader = base.mod.loader,
-                list = [],
-                getList = function(me) {
-                    list.push(me.value);
-                };
-            
-            for (n in base.watch) {
-                if (base.watch.hasOwnProperty(n) && base.watch[n]) {
-                    console.log('pushing: ', n);
-                    list.push(n);
-                    Spk.append(base.items[n].slice(1), loader);
-                }
-            }
-            Spk.ease.fadeOut(base.mod.box, 300);
-            //---begin synchronization---
-            proto.sync(list);
+        } else { 
+            Spk.ease.fadeOut(base.mod.box, 300, 'easeInOutQuad', function () {
+                //hide main elems and sync
+                list.map(function (item) {
+                    Spk.append(base.items[item].slice(1), loader);
+                });
+                base.sync(list);
+            });
         }
     };
 
-    //synchronize a list of files and directories
+    /**
+     * synchronize a list of files and directories
+     * we do each one separately since that is how ftp
+     * works anyways, however this could generate some
+     * undesired overhead in certain circumstances so
+     * in the future we could easily add the option
+     * to do this all in a single call that passes json
+     * data array or cvs querstring of files to 
+     * parser in the controller that will handle the download
+     * the drawback is that we would lose per file progress
+     * unless we build support for progress requests
+     * @params {array} filelist - an array of file and/or directory names
+     */
     proto.sync = function (filelist) {
         console.log('synchronizing', filelist);
-        //we do each one separately since that is how ftp
-        //works anyways, however this could generate some
-        //undesired overhead in certain circumstances
-        var i,
+        var i = 0,
             cfg,
-            Config = function (action, complete) {
-                this.action = 'sync/' + action;
-                this.complete = complete;
-            };
-        Config.create = function (action) {
-            var onComplete = function () {
-                    dbg('file updated: ' + action);
-                    base.items[action][1].className += ' completed';
-                };
-            return new Config(action, onComplete);
-        };
-        Config.prototype = {
-            method: 'get',
-            action: '',
-            async: true
-        };
-
-        for (i = 0; i < filelist.length; i++) {
-            cfg = Config.create(filelist[i]);
-            console.log(cfg);
+            size = filelist.length;
+        Spk.ease.fadeIn(base.mod.loader, 200);
+        base.syncManager = SyncManager.create(filelist);
+        for (i; i < size; i++) {
+            cfg = AJAXConfig.create(filelist[i]);
             Spk.ajax(cfg);
         }
 
@@ -290,7 +323,7 @@ Spk.ignite('Base', 'b', function() {
                             //add to selected
                             base.watch[filepath] = 1;
                         }
-                        console.log('Marked '+ type + ': ' + filepath);
+                        console.log('Marked '+ type + ': ' + filepath, base.watch[filepath]);
                     }//}}}
                 },
                 it = item.cloneNode();

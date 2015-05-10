@@ -1,6 +1,6 @@
 {
 	"name": "fsync",
-	"version": "0.4.1",
+	"version": "0.4.4",
 	"preferGlobal": false,
 	"description": "Fsync is a browser based FTP file synchronization manager for developers; built with FTPimp on NodeJS.",
 	"main": "./index.js",
@@ -19,7 +19,7 @@
         "manager"
 	],
 	"dependencies": {
-		"colors": "1.0.3",
+		"colors": "*",
 		"express": "3.5.x",
         "ftpimp": "1.0.x",
         "winston": "0.9.x",
