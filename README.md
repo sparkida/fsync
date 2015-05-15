@@ -1,4 +1,4 @@
-Fsync
+FTP-sync
 -----
 FTP file synchronization manager, built with NodeJS and FTPimp
 
@@ -9,3 +9,4 @@ Setup
 2. Change `config/config.js` values as needed
 3. Run `npm install`
 4. Start the server `./start` or `node fsync`
+5. Browse to ([http://localhost:8081])

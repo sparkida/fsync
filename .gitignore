@@ -1,5 +1,6 @@
 *.log
 *.pid
+.history
 node_modules/
 .sass-cache/
 config/config.js

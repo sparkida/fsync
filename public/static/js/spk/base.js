@@ -84,7 +84,7 @@ Spk.ignite('Base', 'b', function () {
         submit: Spk.set('input', {
             id: 'submit',
             type: 'submit',
-            value: 'generate'
+            value: 'sync'
         }),
         control: Spk.set('div', {
             class: 'control'

@@ -10,5 +10,6 @@ config/config.js
 config/ftp.js
 .git
 .gitignore
+.history
 .npmignore
 .watchignore

@@ -1,8 +1,8 @@
 {
-	"name": "file-sync",
-	"version": "1.0.0",
+	"name": "ftp-sync",
+	"version": "1.0.1",
 	"preferGlobal": false,
-	"description": "File-sync provides a simple browser based GUI that enables you to quickly synchronize files with FTP. Uses FTPimp under the hood.",
+	"description": "FTP-sync provides a simple browser based GUI that enables you to quickly synchronize files with FTP. Uses FTPimp under the hood.",
 	"main": "./index.js",
 	"directories": {
 		"lib": "./lib"
