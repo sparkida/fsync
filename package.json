@@ -1,22 +1,25 @@
 {
-	"name": "fsync",
+	"name": "file-sync",
 	"version": "1.0.0",
 	"preferGlobal": false,
-	"description": "Fsync is a browser based FTP file synchronization manager for developers; built with FTPimp on NodeJS.",
+	"description": "File-sync provides a simple browser based GUI that enables you to quickly synchronize files with FTP. Uses FTPimp under the hood.",
 	"main": "./index.js",
 	"directories": {
 		"lib": "./lib"
 	},
 	"repository": {
 		"type": "git",
-		"url": "https://github.com/Sparkida/FTP-sync.git"
+		"url": "https://github.com/Sparkida/fsync.git"
 	},
 	"keywords": [
 		"ftp",
+        "ftp file manager",
+        "ftp client",
 		"viewer",
 		"browser",
+        "gui",
 		"file",
-        "manager"
+        "syncronization manager"
 	],
 	"dependencies": {
 		"colors": "*",
