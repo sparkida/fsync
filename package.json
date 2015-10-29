@@ -1,39 +1,39 @@
 {
-	"name": "ftp-sync",
-	"version": "1.0.11",
-	"preferGlobal": false,
-	"description": "FTP-sync provides a simple browser based GUI that enables you to quickly synchronize files with FTP. Uses FTPimp under the hood.",
-	"main": "./index.js",
-	"directories": {
-		"lib": "./lib"
-	},
-	"repository": {
-		"type": "git",
-		"url": "https://github.com/Sparkida/fsync.git"
-	},
-	"keywords": [
-		"ftp",
-        "ftp file manager",
-        "ftp client",
-		"viewer",
-		"browser",
-        "gui",
-		"file",
-        "syncronization manager"
-	],
-	"dependencies": {
-		"colors": "*",
-		"express": "3.5.x",
-        "ftpimp": "1.3.x",
-        "winston": "0.9.x",
-		"express-handlebars": "1.2.x"
-	},
-	"engine": {
-		"node": ">=0.10.x"
-	},
-	"author": {
-	 "name": "Nick Riley",
-	 "email": "nick@sparkida.com",
-	 "url": "http://sparkida.com"
-	}
+  "name": "ftp-sync",
+  "version": "1.0.11",
+  "preferGlobal": false,
+  "description": "FTP-sync provides a simple browser based GUI that enables you to quickly synchronize files with FTP. Uses FTPimp under the hood.",
+  "main": "./index.js",
+  "directories": {
+    "lib": "./lib"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Sparkida/fsync.git"
+  },
+  "keywords": [
+    "ftp",
+    "ftp file manager",
+    "ftp client",
+    "viewer",
+    "browser",
+    "gui",
+    "file",
+    "syncronization manager"
+  ],
+  "dependencies": {
+    "colors": "*",
+    "express": "^4.13.3",
+    "express-handlebars": "^2.0.1",
+    "ftpimp": "^2.2.32",
+    "winston": "^1.1.2"
+  },
+  "engine": {
+    "node": ">=0.10.x"
+  },
+  "author": {
+    "name": "Nick Riley",
+    "email": "nick@sparkida.com",
+    "url": "http://sparkida.com"
+  }
 }
